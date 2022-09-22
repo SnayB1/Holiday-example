@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sheenay - Homework 4</title>
+    <!-- bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- CSS -->
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+
+<!-- styling the entire document css and bootstrap inc  -->
+<style>
+    body {
+        background-color: white;
+        height: 100%;
+        border-radius: 15px;
+        margin-bottom: 25px; 
+    }
+
+    header {
+        background-color: rgb(41, 124, 135);
+        height: 170px;
+        padding: 10px;
+        border-radius: 25px;
+        margin-bottom: 25px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    /* header 1 styling */
+    h1 {
+        color: aquamarine;
+        font: Georgia;
+        text-align: center;
+    }
+
+    /* header 2 styling */
+    h2 {
+        color: rgb(10, 26, 47);
+        font: Georgia;
+    }
+
+    /* paragrah styling */
+    p,
+    small {
+        color: white;
+        font: serif;
+    }
+
+    label {
+        background-color: rgb(0, 0, 0);
+        color: aliceblue;
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+
+    .optional {
+        color: rgb(0, 181, 72);
+    }
+
+    input,
+    select,
+    textarea {
+        margin-bottom: 10px;
+        color: rgb(45, 71, 121);
+
+    }
+
+    /* client details all under 1  */
+    #main {
+        background-color: rgb(140, 178, 191);
+        border: 1px solid;
+        justify-content: flex-start;
+        align-items: center;
+        margin-right: 20px;
+        padding: 10px;
+        border-radius: 15px;
+        width: fit-content;
+    }
+    /* congratulation box  */
+    #print {
+        background-color: rgb(25, 172, 221);
+        border: 1px solid;
+        justify-content: space-around;
+        margin-right: 20px;
+        padding: 10px;
+        border-radius: 15px;
+        width: fit-content;
+    }
+
+    /* submit button */
+    #submit {
+        background-color: rgb(25, 172, 221);
+        color: black;
+        padding-block: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #reset {
+        background-color: rgb(25, 172, 221);
+        color: black;
+        padding-block: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    /* carousel */
+    .carouselExampleControls {
+        padding: 10px;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        width: 100px;
+    }
+
+</style>
+
+<body>
+
+    <!-- Header  -->
+    <header>
+        <div>
+            <h1><strong>Fun, Single and Family Holidays.</strong></h1>
+            <h1><strong> Form, Validation & Print</strong></h1>
+            <br>
+            <p>Please find order form below. The form has data input validation in place. After pressing submit button
+                the collected data in form are displayed on the screen</p> 
+        </div>
+    </header>
+
+
+    <!-- images of of expedition   -->
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" width="100px" height="100px">
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1527206363095-ca2f054128b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YmVhY2glMjBob2xpZGF5fGVufDB8fDB8fA%3D%3D&w=1000&q=80" class="d-block w-100" alt="Holiday image with ice tea">
+          </div>
+
+          <div class="carousel-item">
+            <img src="https://media.istockphoto.com/photos/beautiful-beach-with-palm-trees-picture-id672972564?k=20&m=672972564&s=612x612&w=0&h=stCPtlJDXxTovqrYejQkoQ3p4kusWBb7I2SUr7nDOEI=" class="d-block w-100" alt="Beach view and two chairs">
+          </div>
+
+          <div class="carousel-item">
+            <img src="https://www.telegraph.co.uk/content/dam/Travel/2016/February/ba-ibiza-beach-xlarge.jpg?imwidth=640" class="d-block w-100" alt="family on beach">
+          </div>
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+        <br><br>
+
+    </div>
+
+    <!-- main -->
+    <!-- I have to type "div" and then "id" separately  -->
+    <!-- ** please note how much is in one "div" -->
+    <!-- ensure everything is within "form" for submit button to work   -->
+    <div id="main" class="rounded float-start">
+        <!-- Form - Customer details -->
+        <form onsubmit="validate()">
+            <div id="formCustomerDetails">
+                <form action="formHandler.php" method="post">  
+                <h2><strong> Client Details</strong></h2><br>
+                <!-- First name - name label and text box  -->
+                <label for="fName">First name *</label><br>
+                <input type="text" name="fName" id="fName" placeholder="Joseph" pattern="[A-Za-z]" required
+                    autofocus><br><br>
+
+                <!-- last name -  label and text box  -->
+                <label for="lName">Last name *</label><br>
+                <input type="text" name="lName" id="lName" placeholder="Johnson" pattern="[A-Za-z]" required><br><br>
+
+                <!-- Company name - label and text box  -->
+                <!-- span allows for extra text - separate from main text  -->
+                <label for="cName">Company name <span class="optional">(Optional)</span></label><br>
+                <input type="text" name="cName" id="cName" placeholder="Company Name"><br><br>
+
+                <label for="Country">Country *</label><br>
+                <select name="Country" id="country">Country</select><br><br>
+            </div>
+
+        <!-- js -->
+        <Script>
+            const countryList = [
+                "Select your country",
+                "Afghanistan",
+                "Albania",
+                "Algeria",
+                "American Samoa",
+                "Andorra",
+                "Angola",
+                "Anguilla",
+                "Antarctica",
+                "Antigua and Barbuda",
+                "Argentina",
+                "Armenia",
+                "Aruba",
+                "Australia",
+                "Austria",
+                "Azerbaijan",
+                "Bahamas (the)",
+                "Bahrain",
+                "Bangladesh",
+                "Barbados",
+                "Belarus",
+                "Belgium",
+                "Belize",
+                "Benin",
+                "Bermuda",
+                "Bhutan",
+                "Bolivia (Plurinational State of)",
+                "Bonaire, Sint Eustatius and Saba",
+                "Bosnia and Herzegovina",
+                "Botswana",
+                "Bouvet Island",
+                "Brazil",
+                "British Indian Ocean Territory (the)",
+                "Brunei Darussalam",
+                "Bulgaria",
+                "Burkina Faso",
+                "Burundi",
+                "Cabo Verde",
+                "Croatia",
+                "Cuba",
+                "Curaçao",
+                "Cyprus",
+                "Czechia",
+                "Côte d'Ivoire",
+                "Denmark",
+                "Djibouti",
+                "Dominica",
+                "Dominican Republic (the)",
+                "Ecuador",
+                "Egypt",
+                "El Salvador",
+                "Equatorial Guinea",
+                "Gambia (the)",
+                "Georgia",
+                "Germany",
+                "Ghana",
+                "Gibraltar",
+                "Greece",
+                "Greenland",
+                "Grenada",
+                "Indonesia",
+                "Iran (Islamic Republic of)",
+                "Iraq",
+                "Ireland",
+                "Isle of Man",
+                "Israel",
+                "Italy",
+                "Jamaica",
+                "Latvia",
+                "Lebanon",
+                "Lesotho",
+                "Liberia",
+                "Libya",
+                "Liechtenstein",
+                "Lithuania",
+                "Luxembourg",
+                "Macao",
+                "Madagascar",
+                "Malawi",
+                "Malaysia",
+                "Maldives",
+                "Mali",
+                "Malta",
+                "Marshall Islands (the)",
+                "Namibia",
+                "Nauru",
+                "Nepal",
+                "Netherlands (the)",
+                "New Caledonia",
+                "New Zealand",
+                "Nicaragua",
+                "Niger (the)",
+                "Nigeria",
+                "Niue",
+                "Norfolk Island",
+                "Northern Mariana Islands (the)",
+                "Norway",
+                "Oman",
+                "Pakistan",
+                "Palau",
+                "Palestine, State of",
+                "Panama",
+                "Papua New Guinea",
+                "Paraguay",
+                "Peru",
+                "Philippines (the)",
+                "Pitcairn",
+                "Poland",
+                "Portugal",
+                "Puerto Rico",
+                "Qatar",
+                "Republic of North Macedonia",
+                "Romania",
+                "Russian Federation (the)",
+                "Rwanda",
+                "Saint Martin (French part)",
+                "Saint Pierre and Miquelon",
+                "Saint Vincent and the Grenadines",
+                "Samoa",
+                "Sao Tome and Principe",
+                "Saudi Arabia",
+                "Senegal",
+                "Serbia",
+                "Seychelles",
+                "Sierra Leone",
+                "Singapore",
+                "Slovakia",
+                "Slovenia",
+                "Solomon Islands",
+                "Tunisia",
+                "Turkey",
+                "Turkmenistan",
+                "Tuvalu",
+                "Uganda",
+                "Ukraine",
+                "United Arab Emirates (the)",
+                "United Kingdom of Great Britain and Northern Ireland (the)",
+                "United States Minor Outlying Islands (the)",
+                "United States of America (the)",
+                "Uruguay",
+                "Uzbekistan",
+                "Vanuatu",
+                "Virgin Islands (British)",
+                "Virgin Islands (U.S.)",
+                "Western Sahara",
+                "Yemen",
+                "Zambia",
+                "Zimbabwe",
+            ];
+
+            let option = "";
+            countryList.forEach(createListCountries); {
+                document.getElementById("country").innerHTML = option;
+            }
+
+            function createListCountries(value, index, array) {
+                option += "<option value='" + value + "'>" + value + "</option>";
+            }
+
+
+        </Script>
+        <!-- street, town, second box  -->
+        <div class="Main">
+            <!-- street name - label and text box  -->
+            <label for="Street" required>Street *</label><br>
+            <input type="text" name="Street" id="street" placeholder="1st line address"><br>
+
+            <!-- street name - label and text box  -->
+            <label for="city"> Post code *</label><br>
+            <input type="text" name="PostCode" id="postCode" placeholder="SE1 0YL"><br><br>
+
+            <!-- phone number - label and text box  -->
+            <label for="phone"> Phone Number *</label><br>
+            <input type="number" name="pNumber" id="pNumber" placeholder="07934 552199" pattern="[0-9] {9}"><br><br>
+
+            <!-- email address - label and text box  -->
+            <label for="email address">Email Address *</label><br>
+            <input type="text" name="eAddress" id="eAddress" placeholder="j.johnson@yahoo.co.uk"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br><br>
+
+            <!-- Extra Notes - label and text box  -->
+            <!-- ** please note "input has changed to "textarea for larger typing space" -->
+            <!-- span allows for extra text - separate from main text  -->
+            <label for="note">Extra Notes <span class="optional">(Optional)</span></label><br>
+            <textarea name="note" id="note" cols="40" rows="10" maxlength="250"
+                placeholder="Any additional information (Limited to 250 characters)."></textarea><br><br>
+
+            <!-- submit form button -->
+            <!-- when customer press's submit - the document will show the information customer entered -->
+            <!-- then use JS to show what you want to print  -->
+            <input button="submit" input type="submit" name="submit" id="submit" onclick="validateCustomerDetails()" value="Submit">
+            <!-- reset button  -->
+            <button type="reset" value="Reset">Reset</button><br>
+        </form>
+        </div>
+
+        <!-- Adding JS   -->
+        <!-- ** Notice it is still in "div" -->
+
+        <script>
+            // js for submit button 
+
+            function validateCustomerDetails() {
+                // creating full name formula
+                var fName = document.getElementById("fName").value;
+                var lName = document.getElementById("lName").value;
+                var fullName = fName + "  " + lName;
+
+                // creating Company formula
+                // ** notice it is all under one "function"
+                // *****
+                var cName = document.getElementById("cName").value;
+
+                // creating Address formula
+                // why isn't it in order of input - (address before country) 
+                var street = document.getElementById("street").value;
+                var postCode = document.getElementById("postCode").value;
+                var country = document.getElementById("country").value;
+                // remember there are spaces between each value
+                var address = street + ", " + postCode + ", " + country;
+
+                // creating phone number formula
+                var phone = document.getElementById("pNumber").value;
+
+                // creating email address formula
+                var email = document.getElementById("eAddress").value;
+
+                // creating note box formula
+                var note = document.getElementById("note").value;
+
+                // Creating Validation function
+                var fNameCheckPattern = /^[a-zA-Z]+$/;
+                var lNameCheckPattern = /^[a-zA-Z]+$/;
+                var cityCheckPattern = /^[a-zA-Z]+$/;
+                var phoneCheckPattern = /[0-9]{9}/;
+                var emailCheckPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+                // if statement 
+                if (!fNameCheckPattern.test(fName)) {
+                    document.getElementById('fName').focus(); alert("Please enter First name correctly. Only Characters are allowed.")
+
+                    // if else statements 
+                } else if (!lNameCheckPattern.test(lName)) {
+                    document.getElementById('lName').focus(); alert("Please enter Last name correctly. Only Characters are allowed.");
+                } else if (!phoneCheckPattern.test(phone)) {
+                    document.getElementById('pNumber').focus(); alert("Please enter your phone number right formate. Example: 123456798");
+                } else if (!emailCheckPattern.test(email)) {
+                    document.getElementById('eAddress').focus(); alert("Please enter your email in right formate. Example: John.Smith@email.com");
+                } else {
+                    printCustomerDetails();
+                }
+
+                // print out (show customer details)
+                function printCustomerDetails() {
+                    document.getElementById("outputFullName").innerHTML = "<b>Full name: </b>" + fullName;
+                    document.getElementById('outputAddress').innerHTML = "<b>Address: </b>" + address;
+                    document.getElementById('outputPhone').innerHTML = "<b>Phone: </b>" + phone;
+                    document.getElementById('outputEmail').innerHTML = "<b>Email: </b>" + email;
+                    document.getElementById('outputNote').innerHTML = "<b>Note: </b>" + note;
+                }
+
+
+            }
+
+        </script>
+
+
+    </div>
+    <!-- print forms  -->
+    <!-- class="rounded float-end" . how to get boxes to right side  -->
+    <div id="print" class="rounded float-end">
+        <h2><strong>Congratulations!</strong><br>Get ready for your expedition.</h2>
+        <small><i>This is a printable version of your forms.</i></small>
+        <hr>
+
+        <h2><u>Customer Information</u></h2>
+        <p id="outputFullName"><b>Full name:</b></p>
+        <p id="outputCompanyName"><b>Company name:</b></p>
+        <p id="outputAddress"><b>Address:</b></p>
+        <p id="outputPhone"><b>Phone:</b></p>
+        <p id="outputEmail"><b>Email:</b></p>
+        <p id="outputNote"><b>Note:</b></p>
+
+        <hr>
+
+        <h2> We will contact you soon.</h2>
+
+    </div>
+
+
+
+
+    <!-- bootstrap link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
